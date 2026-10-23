@@ -1,0 +1,20 @@
+mqtt_bridge:
+  ros__parameters:
+    mqtt_address: "mosquitto"
+    mqtt_port: 1883
+    mqtt_username: ""
+    mqtt_password: ""
+    manufacturer_name: "IFC"
+    serial_number: "AMR_1"
+
+controller:
+  ros__parameters:
+    robot_name: "AMR_1"
+    manufacturer_name: "IFC"
+    serial_number: "AMR_1"
+
+amr_adapter:
+  ros__parameters:
+    robot_name: "AMR_1"
+    manufacturer_name: "IFC"
+    serial_number: "AMR_1"

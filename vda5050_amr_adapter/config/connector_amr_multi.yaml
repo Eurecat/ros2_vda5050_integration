@@ -1,0 +1,44 @@
+mqtt:
+  mqtt_address: localhost
+  mqtt_port: 1883
+  mqtt_username: ""
+  mqtt_password: ""
+  manufacturer_name: "IFC"
+
+robots:
+  - robot_name: "omni_1"
+    namespace: "omni_1"
+    serial_number: "f8882747fffdgr320"
+    map_frame: "map"
+    robot_base_frame: "omni_1_base_link"
+    vda_map_id: "warehouse"
+    state_pub_period: 1.0 # seconds
+    visualization_pub_period: 0.1 # seconds
+    use_sim_time: true
+    factsheet:
+      type_specification:
+        series_name: "omni_robots"
+        agv_kinematics: "OMNI"
+      physical_parameters:
+        speed_max: 1.3
+        acceleration_max: 2.5
+        width: 0.3
+        length: 0.3
+  - robot_name: "omni_2"
+    namespace: "omni_2"
+    serial_number: "f8882747fffdgr3201"
+    map_frame: "map"
+    robot_base_frame: "omni_2_base_link"
+    vda_map_id: "warehouse"
+    state_pub_period: 1.0 # seconds
+    visualization_pub_period: 0.1 # seconds
+    use_sim_time: true
+    factsheet:
+      type_specification:
+        series_name: "omni_robots"
+        agv_kinematics: "OMNI"
+      physical_parameters:
+        speed_max: 1.3
+        acceleration_max: 2.5
+        width: 0.3
+        length: 0.3
