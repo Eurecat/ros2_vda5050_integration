@@ -17,7 +17,7 @@
 #      contributors may be used to endorse or promote products derived from
 #      this software without specific prior written permission.
 #
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS'
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
 # ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
@@ -31,20 +31,20 @@
 
 import pytest
 
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.utils import json_camel_to_snake_case
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.utils import json_snake_to_camel_case
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.utils import get_vda5050_mqtt_topic
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.utils import get_vda5050_ros2_topic
+from vda5050_connector_py.utils import json_camel_to_snake_case
+from vda5050_connector_py.utils import json_snake_to_camel_case
+from vda5050_connector_py.utils import get_vda5050_mqtt_topic
+from vda5050_connector_py.utils import get_vda5050_ros2_topic
 
 
 @pytest.mark.parametrize(
-    "test_input, expected",
+    'test_input, expected',
     [
-        ('{"a": "b"}', {"a": "b"}),
-        ('{"headerId": "123"}', {"header_id": "123"}),
+        ({'a': 'b'}, {'a': 'b'}),
+        ({'headerId': '123'}, {'header_id': '123'}),
         (
-            '{"fooBar": {"fooBaz": 1, "fooList": [1, 2, 3], "fooObjList": [{"abC": "abC"}]}}',
-            {"foo_bar": {"foo_baz": 1, "foo_list": [1, 2, 3], "foo_obj_list": [{"ab_c": "abC"}]}},
+            {'fooBar': {'fooBaz': 1, 'fooList': [1, 2, 3], 'fooObjList': [{'abC': 'abC'}]}},
+            {'foo_bar': {'foo_baz': 1, 'foo_list': [1, 2, 3], 'foo_obj_list': [{'ab_c': 'abC'}]}},
         ),
     ],
 )
@@ -53,13 +53,13 @@ def test_json_camel_to_snake_case(test_input, expected):
 
 
 @pytest.mark.parametrize(
-    "test_input, expected",
+    'test_input, expected',
     [
-        ('{"a": "b"}', {"a": "b"}),
-        ('{"header_id": "123"}', {"headerId": "123"}),
+        ({'a': 'b'}, {'a': 'b'}),
+        ({'header_id': '123'}, {'headerId': '123'}),
         (
-            '{"foo_bar": {"foo_baz": 1, "foo_list": [1, 2, 3], "foo_ob_list": [{"ab_c": "abC"}]}}',
-            {"fooBar": {"fooBaz": 1, "fooList": [1, 2, 3], "fooObList": [{"abC": "abC"}]}},
+            {'foo_bar': {'foo_baz': 1, 'foo_list': [1, 2, 3], 'foo_ob_list': [{'ab_c': 'abC'}]}},
+            {'fooBar': {'fooBaz': 1, 'fooList': [1, 2, 3], 'fooObList': [{'abC': 'abC'}]}},
         ),
     ],
 )
@@ -68,18 +68,18 @@ def test_json_snake_to_camel_case(test_input, expected):
 
 
 @pytest.mark.parametrize(
-    "test_input, expected",
+    'test_input, expected',
     [
-        ({"manufacturer": "M", "serial_number": "SN", "topic": "order"}, "uagv/v1/M/SN/order"),
+        ({'manufacturer': 'M', 'serial_number': 'SN', 'topic': 'order'}, 'uagv/v1/M/SN/order'),
         (
             {
-                "manufacturer": "M",
-                "serial_number": "SN",
-                "topic": "order",
-                "interface_name": "foo",
-                "major_version": "v2",
+                'manufacturer': 'M',
+                'serial_number': 'SN',
+                'topic': 'order',
+                'interface_name': 'foo',
+                'major_version': 'v2',
             },
-            "foo/v2/M/SN/order",
+            'foo/v2/M/SN/order',
         ),
     ],
 )
@@ -88,20 +88,20 @@ def test_get_vda5050_mqtt_topic(test_input, expected):
 
 
 @pytest.mark.parametrize(
-    "test_input, expectation",
+    'test_input, expectation',
     [
         (
             {
-                "manufacturer": "M",
-                "serial_number": "SN",
-                "topic": "order",
-                "interface_name": "uagv",
-                "major_version": "v123",
+                'manufacturer': 'M',
+                'serial_number': 'SN',
+                'topic': 'order',
+                'interface_name': 'uagv',
+                'major_version': 'v123',
             },
             pytest.raises(ValueError),
         ),
         (
-            {"manufacturer": "M", "serial_number": "SN", "topic": "order", "major_version": "1"},
+            {'manufacturer': 'M', 'serial_number': 'SN', 'topic': 'order', 'major_version': '1'},
             pytest.raises(ValueError),
         ),
     ],
@@ -112,18 +112,18 @@ def test_get_vda5050_mqtt_topic_exceptions(test_input, expectation):
 
 
 @pytest.mark.parametrize(
-    "test_input, expected",
+    'test_input, expected',
     [
-        ({"manufacturer": "M", "serial_number": "SN", "topic": "order"}, "/uagv/v1/M/SN/order"),
+        ({'manufacturer': 'M', 'serial_number': 'SN', 'topic': 'order'}, '/uagv/v1/M/SN/order'),
         (
             {
-                "manufacturer": "M",
-                "serial_number": "SN",
-                "topic": "order",
-                "interface_name": "foo",
-                "major_version": "v2",
+                'manufacturer': 'M',
+                'serial_number': 'SN',
+                'topic': 'order',
+                'interface_name': 'foo',
+                'major_version': 'v2',
             },
-            "/foo/v2/M/SN/order",
+            '/foo/v2/M/SN/order',
         ),
     ],
 )
@@ -132,20 +132,20 @@ def test_get_vda5050_ros2_topic(test_input, expected):
 
 
 @pytest.mark.parametrize(
-    "test_input, expectation",
+    'test_input, expectation',
     [
         (
             {
-                "manufacturer": "M",
-                "serial_number": "SN",
-                "topic": "order",
-                "interface_name": "uagv",
-                "major_version": "v123",
+                'manufacturer': 'M',
+                'serial_number': 'SN',
+                'topic': 'order',
+                'interface_name': 'uagv',
+                'major_version': 'v123',
             },
             pytest.raises(ValueError),
         ),
         (
-            {"manufacturer": "M", "serial_number": "SN", "topic": "order", "major_version": "1"},
+            {'manufacturer': 'M', 'serial_number': 'SN', 'topic': 'order', 'major_version': '1'},
             pytest.raises(ValueError),
         ),
     ],

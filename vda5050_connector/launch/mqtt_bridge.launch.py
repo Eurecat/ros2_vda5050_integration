@@ -17,7 +17,7 @@
 #      contributors may be used to endorse or promote products derived from
 #      this software without specific prior written permission.
 #
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS'
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
 # ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
@@ -37,31 +37,31 @@ from launch.actions import DeclareLaunchArgument
 from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch.substitutions import LaunchConfiguration
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.rewritten_yaml import RewrittenYaml
+from vda5050_connector_py.rewritten_yaml import RewrittenYaml
 
 
 def generate_launch_description():
 
     # Get the launch directory
-    package_name = "vda5050_connector"
+    package_name = 'vda5050_connector'
     package_dir = get_package_share_directory(package_name)
 
     # Launch configuration variables for parameters
-    namespace = LaunchConfiguration("namespace")
-    parameters_config_file = LaunchConfiguration("parameters_config_file")
+    namespace = LaunchConfiguration('namespace')
+    parameters_config_file = LaunchConfiguration('parameters_config_file')
 
     # Declare parameters
 
     declare_namespace = DeclareLaunchArgument(
-        "namespace",
-        default_value="vda5050",
-        description="Namespace to use",
+        'namespace',
+        default_value='vda5050',
+        description='Namespace to use',
     )
 
     declare_parameters_config_file_cmd = DeclareLaunchArgument(
-        "parameters_config_file",
-        default_value=os.path.join(package_dir, "config", "connector_example.yaml"),
-        description="Full path to the parameters config file to use",
+        'parameters_config_file',
+        default_value=os.path.join(package_dir, 'config', 'connector_example.yaml'),
+        description='Full path to the parameters config file to use',
     )
 
     # Create our own temporary YAML files that include substitutions
@@ -75,10 +75,10 @@ def generate_launch_description():
     # Nodes
 
     mqtt_brindge_node = Node(
-        package="vda5050_connector",
-        executable="mqtt_bridge.py",
+        package='vda5050_connector',
+        executable='mqtt_bridge.py',
         namespace=namespace,
-        name="mqtt_bridge",
+        name='mqtt_bridge',
         parameters=[configured_params],
     )
 

@@ -17,7 +17,7 @@
 #      contributors may be used to endorse or promote products derived from
 #      this software without specific prior written permission.
 #
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS'
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
 # ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
@@ -36,14 +36,14 @@ import rclpy
 from vda5050_connector.action import NavigateToNode
 from vda5050_connector.action import NavigateThroughNodes
 from vda5050_connector.action import ProcessVDAAction
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.vda5050_controller import DEFAULT_NAV_TO_NODE_ACT_NAME
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.vda5050_controller import DEFAULT_NAV_THROUGH_NODES_ACT_NAME
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.vda5050_controller import DEFAULT_VDA_ACTION_ACT_NAME
+from vda5050_connector_py.vda5050_controller import DEFAULT_NAV_TO_NODE_ACT_NAME
+from vda5050_connector_py.vda5050_controller import DEFAULT_NAV_THROUGH_NODES_ACT_NAME
+from vda5050_connector_py.vda5050_controller import DEFAULT_VDA_ACTION_ACT_NAME
 from vda5050_connector.srv import ExtendNavigation
 from vda5050_connector.srv import GetState
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.vda5050_controller import DEFAULT_GET_STATE_SVC_NAME
+from vda5050_connector_py.vda5050_controller import DEFAULT_GET_STATE_SVC_NAME
 from vda5050_connector.srv import SupportedActions
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.vda5050_controller import DEFAULT_SUPPORTED_ACTIONS_SVC_NAME
+from vda5050_connector_py.vda5050_controller import DEFAULT_SUPPORTED_ACTIONS_SVC_NAME
 from rclpy.qos import qos_profile_action_status_default
 
 
@@ -52,27 +52,27 @@ class MockActionServerNavigateToNode:
         self.logger = node.get_logger()
         self.goal_srv = node.create_service(
             NavigateToNode.Impl.SendGoalService,
-            f"/vda5050/robots/robot_1/{DEFAULT_NAV_TO_NODE_ACT_NAME}/_action/send_goal",
+            f'/vda5050/robots/robot_1/{DEFAULT_NAV_TO_NODE_ACT_NAME}/_action/send_goal',
             self.goal_callback,
         )
         self.cancel_srv = node.create_service(
             NavigateToNode.Impl.CancelGoalService,
-            f"/vda5050/robots/robot_1/{DEFAULT_NAV_TO_NODE_ACT_NAME}/_action/cancel_goal",
+            f'/vda5050/robots/robot_1/{DEFAULT_NAV_TO_NODE_ACT_NAME}/_action/cancel_goal',
             self.cancel_callback,
         )
         self.result_srv = node.create_service(
             NavigateToNode.Impl.GetResultService,
-            f"/vda5050/robots/robot_1/{DEFAULT_NAV_TO_NODE_ACT_NAME}/_action/get_result",
+            f'/vda5050/robots/robot_1/{DEFAULT_NAV_TO_NODE_ACT_NAME}/_action/get_result',
             self.result_callback,
         )
         self.feedback_pub = node.create_publisher(
             NavigateToNode.Impl.FeedbackMessage,
-            f"/vda5050/robots/robot_1/{DEFAULT_NAV_TO_NODE_ACT_NAME}/_action/feedback",
+            f'/vda5050/robots/robot_1/{DEFAULT_NAV_TO_NODE_ACT_NAME}/_action/feedback',
             1,
         )
         self.goal_status_pub = node.create_publisher(
             NavigateToNode.Impl.GoalStatusMessage,
-            f"/vda5050/robots/robot_1/{DEFAULT_NAV_TO_NODE_ACT_NAME}/_action/status",
+            f'/vda5050/robots/robot_1/{DEFAULT_NAV_TO_NODE_ACT_NAME}/_action/status',
             qos_profile_action_status_default,
         )
 
@@ -80,7 +80,7 @@ class MockActionServerNavigateToNode:
         # Save goal ID to send feedback later
         self.goal_id = request.goal_id
         response.accepted = True
-        self.logger.info(f"Goal received {response}")
+        self.logger.info(f'Goal received {response}')
         return response
 
     def cancel_callback(self, request, response):
@@ -88,7 +88,7 @@ class MockActionServerNavigateToNode:
         return response
 
     def result_callback(self, request, response):
-        self.logger.info(f"Result callback: {response}")
+        self.logger.info(f'Result callback: {response}')
         return response
 
     def publish_feedback(self, feedback):
@@ -103,27 +103,27 @@ class MockActionServerNavigateThroughNodes:
         self.logger = node.get_logger()
         self.goal_srv = node.create_service(
             NavigateThroughNodes.Impl.SendGoalService,
-            f"/vda5050/robots/robot_1/{DEFAULT_NAV_THROUGH_NODES_ACT_NAME}/_action/send_goal",
+            f'/vda5050/robots/robot_1/{DEFAULT_NAV_THROUGH_NODES_ACT_NAME}/_action/send_goal',
             self.goal_callback,
         )
         self.cancel_srv = node.create_service(
             NavigateThroughNodes.Impl.CancelGoalService,
-            f"/vda5050/robots/robot_1/{DEFAULT_NAV_THROUGH_NODES_ACT_NAME}/_action/cancel_goal",
+            f'/vda5050/robots/robot_1/{DEFAULT_NAV_THROUGH_NODES_ACT_NAME}/_action/cancel_goal',
             self.cancel_callback,
         )
         self.result_srv = node.create_service(
             NavigateThroughNodes.Impl.GetResultService,
-            f"/vda5050/robots/robot_1/{DEFAULT_NAV_THROUGH_NODES_ACT_NAME}/_action/get_result",
+            f'/vda5050/robots/robot_1/{DEFAULT_NAV_THROUGH_NODES_ACT_NAME}/_action/get_result',
             self.result_callback,
         )
         self.feedback_pub = node.create_publisher(
             NavigateThroughNodes.Impl.FeedbackMessage,
-            f"/vda5050/robots/robot_1/{DEFAULT_NAV_THROUGH_NODES_ACT_NAME}/_action/feedback",
+            f'/vda5050/robots/robot_1/{DEFAULT_NAV_THROUGH_NODES_ACT_NAME}/_action/feedback',
             1,
         )
         self.goal_status_pub = node.create_publisher(
             NavigateThroughNodes.Impl.GoalStatusMessage,
-            f"/vda5050/robots/robot_1/{DEFAULT_NAV_THROUGH_NODES_ACT_NAME}/_action/status",
+            f'/vda5050/robots/robot_1/{DEFAULT_NAV_THROUGH_NODES_ACT_NAME}/_action/status',
             qos_profile_action_status_default,
         )
 
@@ -131,7 +131,7 @@ class MockActionServerNavigateThroughNodes:
         # Save goal ID to send feedback later
         self.goal_id = request.goal_id
         response.accepted = True
-        self.logger.info(f"Goal received {response}")
+        self.logger.info(f'Goal received {response}')
         return response
 
     def cancel_callback(self, request, response):
@@ -139,7 +139,7 @@ class MockActionServerNavigateThroughNodes:
         return response
 
     def result_callback(self, request, response):
-        self.logger.info(f"Result callback: {response}")
+        self.logger.info(f'Result callback: {response}')
         return response
 
     def publish_feedback(self, feedback):
@@ -154,27 +154,27 @@ class MockActionServerProcessVDAAction:
         self.logger = node.get_logger()
         self.goal_srv = node.create_service(
             ProcessVDAAction.Impl.SendGoalService,
-            f"/vda5050/robots/robot_1/{DEFAULT_VDA_ACTION_ACT_NAME}/_action/send_goal",
+            f'/vda5050/robots/robot_1/{DEFAULT_VDA_ACTION_ACT_NAME}/_action/send_goal',
             self.goal_callback,
         )
         self.cancel_srv = node.create_service(
             ProcessVDAAction.Impl.CancelGoalService,
-            f"/vda5050/robots/robot_1/{DEFAULT_VDA_ACTION_ACT_NAME}/_action/cancel_goal",
+            f'/vda5050/robots/robot_1/{DEFAULT_VDA_ACTION_ACT_NAME}/_action/cancel_goal',
             self.cancel_callback,
         )
         self.result_srv = node.create_service(
             ProcessVDAAction.Impl.GetResultService,
-            f"/vda5050/robots/robot_1/{DEFAULT_VDA_ACTION_ACT_NAME}/_action/get_result",
+            f'/vda5050/robots/robot_1/{DEFAULT_VDA_ACTION_ACT_NAME}/_action/get_result',
             self.result_callback,
         )
         self.feedback_pub = node.create_publisher(
             ProcessVDAAction.Impl.FeedbackMessage,
-            f"/vda5050/robots/robot_1/{DEFAULT_VDA_ACTION_ACT_NAME}/_action/feedback",
+            f'/vda5050/robots/robot_1/{DEFAULT_VDA_ACTION_ACT_NAME}/_action/feedback',
             1,
         )
         self.goal_status_pub = node.create_publisher(
             ProcessVDAAction.Impl.GoalStatusMessage,
-            f"/vda5050/robots/robot_1/{DEFAULT_VDA_ACTION_ACT_NAME}/_action/status",
+            f'/vda5050/robots/robot_1/{DEFAULT_VDA_ACTION_ACT_NAME}/_action/status',
             qos_profile_action_status_default,
         )
 
@@ -182,7 +182,7 @@ class MockActionServerProcessVDAAction:
         # Save goal ID to send feedback later
         self.goal_id = request.goal_id
         response.accepted = True
-        self.logger.info(f"Goal received {response}")
+        self.logger.info(f'Goal received {response}')
         return response
 
     def cancel_callback(self, request, response):
@@ -190,7 +190,7 @@ class MockActionServerProcessVDAAction:
         return response
 
     def result_callback(self, request, response):
-        self.logger.info(f"Result callback: {response}")
+        self.logger.info(f'Result callback: {response}')
         return response
 
     def publish_feedback(self, feedback):
@@ -209,7 +209,7 @@ def setup_rclpy():
 
 @pytest.fixture
 def adapter_node(setup_rclpy):
-    return rclpy.create_node("FakeAdapter")
+    return rclpy.create_node('FakeAdapter')
 
 
 @pytest.fixture
@@ -231,8 +231,8 @@ def action_server_process_vda_action(adapter_node):
 def service_get_state(adapter_node):
     return adapter_node.create_service(
         GetState,
-        f"/vda5050/robots/robot_1/{DEFAULT_GET_STATE_SVC_NAME}",
-        lambda _: adapter_node.get_logger().info("State request"),
+        f'/vda5050/robots/robot_1/{DEFAULT_GET_STATE_SVC_NAME}',
+        lambda _: adapter_node.get_logger().info('State request'),
     )
 
 
@@ -240,22 +240,22 @@ def service_get_state(adapter_node):
 def service_supported_actions(adapter_node):
     return adapter_node.create_service(
         SupportedActions,
-        f"/vda5050/robots/robot_1/{DEFAULT_SUPPORTED_ACTIONS_SVC_NAME}",
-        lambda _: adapter_node.get_logger().info("Supported actions request"),
+        f'/vda5050/robots/robot_1/{DEFAULT_SUPPORTED_ACTIONS_SVC_NAME}',
+        lambda _: adapter_node.get_logger().info('Supported actions request'),
     )
 
 
 @pytest.fixture
 def service_extend_navigation(adapter_node):
-    """Mock ExtendNavigation service that always succeeds."""
+    '''Mock ExtendNavigation service that always succeeds.'''
     def _callback(request, response):
         response.success = True
-        response.message = f"Extended with {len(request.nodes) - 1} new nodes"
+        response.message = f'Extended with {len(request.nodes) - 1} new nodes'
         return response
 
     return adapter_node.create_service(
         ExtendNavigation,
-        "/vda5050/robots/robot_1/adapter/extend_navigation",
+        '/vda5050/robots/robot_1/adapter/extend_navigation',
         _callback,
     )
 
@@ -264,7 +264,7 @@ def service_extend_navigation(adapter_node):
 def mock_mqtt_client(mocker):
     fake_mid = 52
     fake_rc = 0
-    mock = mocker.patch.object(mqtt, "Client")
+    mock = mocker.patch.object(mqtt, 'Client')
     mock_mqtt_client = mock.return_value
     mock_mqtt_client.subscribe = mocker.MagicMock(return_value=(fake_rc, fake_mid))
     mock_mqtt_client.unsubscribe = mocker.MagicMock(return_value=(fake_rc, fake_mid))

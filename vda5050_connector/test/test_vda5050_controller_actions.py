@@ -17,7 +17,7 @@
 #      contributors may be used to endorse or promote products derived from
 #      this software without specific prior written permission.
 #
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS'
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
 # ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
@@ -34,8 +34,8 @@ from rclpy.logging import LoggingSeverity
 
 from uuid import uuid4
 
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.vda5050_controller import VDA5050Controller
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.utils import get_vda5050_ts
+from vda5050_connector_py.vda5050_controller import VDA5050Controller
+from vda5050_connector_py.utils import get_vda5050_ts
 from vda5050_connector.action import ProcessVDAAction
 
 from vda5050_msgs.msg import Order
@@ -54,14 +54,14 @@ def get_test_order():
     return Order(
         header_id=0,
         timestamp=get_vda5050_ts(),
-        version="1.1.1",
-        manufacturer="MANUFACTURER",
-        serial_number="SERIAL_NUMBER",
+        version='1.1.1',
+        manufacturer='MANUFACTURER',
+        serial_number='SERIAL_NUMBER',
         order_id=str(TEST_ORDER_ID),
         order_update_id=0,
         nodes=[
             Node(
-                node_id="node1",
+                node_id='node1',
                 sequence_id=0,
                 released=True,
                 node_position=NodePosition(
@@ -70,19 +70,19 @@ def get_test_order():
                     theta=-0.66,
                     allowed_deviation_x_y=0.0,
                     allowed_deviation_theta=0.0,
-                    map_id="map",
+                    map_id='map',
                 ),
                 actions=[
                     Action(
-                        action_type="foo",
+                        action_type='foo',
                         action_id=str(TEST_ACTION_ID1),
-                        action_description="foo",
-                        blocking_type="NONE",
+                        action_description='foo',
+                        blocking_type='NONE',
                     )
                 ],
             ),
             Node(
-                node_id="node2",
+                node_id='node2',
                 sequence_id=2,
                 released=True,
                 node_position=NodePosition(
@@ -91,25 +91,25 @@ def get_test_order():
                     theta=0.0,
                     allowed_deviation_x_y=0.0,
                     allowed_deviation_theta=0.0,
-                    map_id="map",
+                    map_id='map',
                 ),
                 actions=[
                     Action(
-                        action_type="bar",
+                        action_type='bar',
                         action_id=str(TEST_ACTION_ID2),
-                        action_description="bar",
-                        blocking_type="NONE",
+                        action_description='bar',
+                        blocking_type='NONE',
                     )
                 ],
             ),
         ],
         edges=[
             Edge(
-                edge_id="edge1",
+                edge_id='edge1',
                 sequence_id=1,
                 released=True,
-                start_node_id="node1",
-                end_node_id="node2",
+                start_node_id='node1',
+                end_node_id='node2',
                 max_speed=10.0,
                 max_height=10.0,
                 min_height=1.0,
@@ -132,7 +132,7 @@ def test_vda5050_controller_node_order_processing(
 
     # Add a spy to validate used process vda actions parameters
     spy_send_adapter_process_vda_action = mocker.spy(
-        node, "send_adapter_process_vda_action"
+        node, 'send_adapter_process_vda_action'
     )
 
     # generate an order and let the node process it
@@ -141,7 +141,7 @@ def test_vda5050_controller_node_order_processing(
 
     assert len(node._current_state.action_states) == 2
 
-    assert node._current_state.last_node_id == "node1"
+    assert node._current_state.last_node_id == 'node1'
     assert node._current_state.last_node_sequence_id == 0
 
     rclpy.spin_once(node)
@@ -156,9 +156,9 @@ def test_vda5050_controller_node_order_processing(
         feedback=ProcessVDAAction.Feedback(
             current_action=CurrentAction(
                 action_id=str(TEST_ACTION_ID1),
-                action_description="foo",
+                action_description='foo',
                 action_status=CurrentAction.INITIALIZING,
-                result_description="",
+                result_description='',
             )
         )
     )
@@ -172,5 +172,5 @@ def test_vda5050_controller_node_order_processing(
         )
     )
 
-    assert action_state.action_description == "foo"
+    assert action_state.action_description == 'foo'
     assert action_state.action_status == CurrentAction.INITIALIZING

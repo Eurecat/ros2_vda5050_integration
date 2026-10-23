@@ -42,13 +42,13 @@ from rclpy.callback_groups import MutuallyExclusiveCallbackGroup
 from rclpy.node import Node
 from rclpy.task import Future
 
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.utils import get_vda5050_ros2_topic
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.utils import get_vda5050_ts
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.utils import read_bool_parameter
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.utils import read_double_parameter
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.utils import read_int_parameter
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.utils import read_str_array_parameter
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.utils import read_str_parameter
+from vda5050_connector_py.utils import get_vda5050_ros2_topic
+from vda5050_connector_py.utils import get_vda5050_ts
+from vda5050_connector_py.utils import read_bool_parameter
+from vda5050_connector_py.utils import read_double_parameter
+from vda5050_connector_py.utils import read_int_parameter
+from vda5050_connector_py.utils import read_str_array_parameter
+from vda5050_connector_py.utils import read_str_parameter
 
 # ROS msgs / srvs / actions
 from vda5050_msgs.msg import Action as VDAAction

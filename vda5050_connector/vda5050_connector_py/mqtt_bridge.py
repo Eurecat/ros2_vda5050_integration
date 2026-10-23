@@ -43,14 +43,14 @@ from threading import Lock
 # ROS dependencies / utils
 from rclpy.node import Node
 
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.utils import get_vda5050_mqtt_topic
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.utils import get_vda5050_ros2_topic
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.utils import json_camel_to_snake_case
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.utils import read_str_parameter, read_int_parameter
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.utils import convert_ros_message_to_json
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.utils import get_vda5050_ts
+from vda5050_connector_py.utils import get_vda5050_mqtt_topic
+from vda5050_connector_py.utils import get_vda5050_ros2_topic
+from vda5050_connector_py.utils import json_camel_to_snake_case
+from vda5050_connector_py.utils import read_str_parameter, read_int_parameter
+from vda5050_connector_py.utils import convert_ros_message_to_json
+from vda5050_connector_py.utils import get_vda5050_ts
 
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.vda5050_controller import DEFAULT_PROTOCOL_VERSION, SUPPORTED_PROTOCOL_VERSIONS
+from vda5050_connector_py.vda5050_controller import DEFAULT_PROTOCOL_VERSION, SUPPORTED_PROTOCOL_VERSIONS
 
 # ROS msgs / srvs / actions
 from vda5050_msgs.msg import Action as VDAAction

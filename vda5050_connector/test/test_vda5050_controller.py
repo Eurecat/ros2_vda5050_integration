@@ -17,7 +17,7 @@
 #      contributors may be used to endorse or promote products derived from
 #      this software without specific prior written permission.
 #
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS'
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
 # ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
@@ -36,10 +36,10 @@ from rclpy.parameter import Parameter
 
 from uuid import uuid4
 
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.vda5050_controller import VDA5050Controller
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.vda5050_controller import OrderAcceptModes
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.vda5050_controller import OrderRejectErrors
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.utils import get_vda5050_ts
+from vda5050_connector_py.vda5050_controller import VDA5050Controller
+from vda5050_connector_py.vda5050_controller import OrderAcceptModes
+from vda5050_connector_py.vda5050_controller import OrderRejectErrors
+from vda5050_connector_py.utils import get_vda5050_ts
 from vda5050_connector.action import NavigateToNode
 from vda5050_connector.action import NavigateThroughNodes
 from vda5050_msgs.msg import Order
@@ -56,14 +56,14 @@ def get_order_new(order_id=str(uuid4()), order_update_id=0):
     return Order(
         header_id=0,
         timestamp=get_vda5050_ts(),
-        version="1.1.1",
-        manufacturer="MANUFACTURER",
-        serial_number="SERIAL_NUMBER",
+        version='1.1.1',
+        manufacturer='MANUFACTURER',
+        serial_number='SERIAL_NUMBER',
         order_id=order_id,
         order_update_id=order_update_id,
         nodes=[
             Node(
-                node_id="node1",
+                node_id='node1',
                 sequence_id=0,
                 released=True,
                 node_position=NodePosition(
@@ -72,11 +72,11 @@ def get_order_new(order_id=str(uuid4()), order_update_id=0):
                     theta=-0.66,
                     allowed_deviation_x_y=0.0,
                     allowed_deviation_theta=0.0,
-                    map_id="map",
+                    map_id='map',
                 ),
             ),
             Node(
-                node_id="node2",
+                node_id='node2',
                 sequence_id=2,
                 released=True,
                 node_position=NodePosition(
@@ -85,11 +85,11 @@ def get_order_new(order_id=str(uuid4()), order_update_id=0):
                     theta=0.0,
                     allowed_deviation_x_y=0.0,
                     allowed_deviation_theta=0.0,
-                    map_id="map",
+                    map_id='map',
                 ),
             ),
             Node(
-                node_id="node3",
+                node_id='node3',
                 sequence_id=4,
                 released=True,
                 node_position=NodePosition(
@@ -98,11 +98,11 @@ def get_order_new(order_id=str(uuid4()), order_update_id=0):
                     theta=0.0,
                     allowed_deviation_x_y=0.0,
                     allowed_deviation_theta=0.0,
-                    map_id="map",
+                    map_id='map',
                 ),
             ),
             Node(
-                node_id="node4",
+                node_id='node4',
                 sequence_id=6,
                 released=True,
                 node_position=NodePosition(
@@ -111,11 +111,11 @@ def get_order_new(order_id=str(uuid4()), order_update_id=0):
                     theta=-2.6,
                     allowed_deviation_x_y=0.0,
                     allowed_deviation_theta=0.0,
-                    map_id="map",
+                    map_id='map',
                 ),
             ),
             Node(
-                node_id="node1",
+                node_id='node1',
                 sequence_id=8,
                 released=True,
                 node_position=NodePosition(
@@ -124,47 +124,47 @@ def get_order_new(order_id=str(uuid4()), order_update_id=0):
                     theta=-0.66,
                     allowed_deviation_x_y=0.0,
                     allowed_deviation_theta=0.0,
-                    map_id="map",
+                    map_id='map',
                 ),
             ),
         ],
         edges=[
             Edge(
-                edge_id="edge1",
+                edge_id='edge1',
                 sequence_id=1,
                 released=True,
-                start_node_id="node1",
-                end_node_id="node2",
+                start_node_id='node1',
+                end_node_id='node2',
                 max_speed=10.0,
                 max_height=10.0,
                 min_height=1.0,
             ),
             Edge(
-                edge_id="edge2",
+                edge_id='edge2',
                 sequence_id=3,
                 released=True,
-                start_node_id="node2",
-                end_node_id="node3",
+                start_node_id='node2',
+                end_node_id='node3',
                 max_speed=10.0,
                 max_height=10.0,
                 min_height=1.0,
             ),
             Edge(
-                edge_id="edge3",
+                edge_id='edge3',
                 sequence_id=5,
                 released=True,
-                start_node_id="node3",
-                end_node_id="node4",
+                start_node_id='node3',
+                end_node_id='node4',
                 max_speed=10.0,
                 max_height=10.0,
                 min_height=1.0,
             ),
             Edge(
-                edge_id="edge4",
+                edge_id='edge4',
                 sequence_id=7,
                 released=True,
-                start_node_id="node4",
-                end_node_id="node1",
+                start_node_id='node4',
+                end_node_id='node1',
                 max_speed=10.0,
                 max_height=10.0,
                 min_height=1.0,
@@ -177,14 +177,14 @@ def get_order_update(order_id=str(uuid4()), order_update_id=0):
     return Order(
         header_id=0,
         timestamp=get_vda5050_ts(),
-        version="1.1.1",
-        manufacturer="MANUFACTURER",
-        serial_number="SERIAL_NUMBER",
+        version='1.1.1',
+        manufacturer='MANUFACTURER',
+        serial_number='SERIAL_NUMBER',
         order_id=order_id,
         order_update_id=order_update_id,
         nodes=[
             Node(
-                node_id="node1",
+                node_id='node1',
                 sequence_id=8,
                 released=True,
                 node_position=NodePosition(
@@ -193,11 +193,11 @@ def get_order_update(order_id=str(uuid4()), order_update_id=0):
                     theta=-0.66,
                     allowed_deviation_x_y=0.0,
                     allowed_deviation_theta=0.0,
-                    map_id="map",
+                    map_id='map',
                 ),
             ),
             Node(
-                node_id="node2",
+                node_id='node2',
                 sequence_id=10,
                 released=True,
                 node_position=NodePosition(
@@ -206,17 +206,17 @@ def get_order_update(order_id=str(uuid4()), order_update_id=0):
                     theta=0.0,
                     allowed_deviation_x_y=0.0,
                     allowed_deviation_theta=0.0,
-                    map_id="map",
+                    map_id='map',
                 ),
             ),
         ],
         edges=[
             Edge(
-                edge_id="edge1",
+                edge_id='edge1',
                 sequence_id=9,
                 released=True,
-                start_node_id="node1",
-                end_node_id="node2",
+                start_node_id='node1',
+                end_node_id='node2',
                 max_speed=10.0,
                 max_height=10.0,
                 min_height=1.0,
@@ -229,14 +229,14 @@ def get_order_w_unreleased_new(order_id=str(uuid4()), order_update_id=0):
     return Order(
         header_id=0,
         timestamp=get_vda5050_ts(),
-        version="1.1.1",
-        manufacturer="MANUFACTURER",
-        serial_number="SERIAL_NUMBER",
+        version='1.1.1',
+        manufacturer='MANUFACTURER',
+        serial_number='SERIAL_NUMBER',
         order_id=order_id,
         order_update_id=order_update_id,
         nodes=[
             Node(
-                node_id="node1",
+                node_id='node1',
                 sequence_id=0,
                 released=True,
                 node_position=NodePosition(
@@ -245,11 +245,11 @@ def get_order_w_unreleased_new(order_id=str(uuid4()), order_update_id=0):
                     theta=-0.66,
                     allowed_deviation_x_y=0.0,
                     allowed_deviation_theta=0.0,
-                    map_id="map",
+                    map_id='map',
                 ),
             ),
             Node(
-                node_id="node2",
+                node_id='node2',
                 sequence_id=2,
                 released=True,
                 node_position=NodePosition(
@@ -258,11 +258,11 @@ def get_order_w_unreleased_new(order_id=str(uuid4()), order_update_id=0):
                     theta=0.0,
                     allowed_deviation_x_y=0.0,
                     allowed_deviation_theta=0.0,
-                    map_id="map",
+                    map_id='map',
                 ),
             ),
             Node(
-                node_id="node3",
+                node_id='node3',
                 sequence_id=4,
                 released=True,
                 node_position=NodePosition(
@@ -271,11 +271,11 @@ def get_order_w_unreleased_new(order_id=str(uuid4()), order_update_id=0):
                     theta=0.0,
                     allowed_deviation_x_y=0.0,
                     allowed_deviation_theta=0.0,
-                    map_id="map",
+                    map_id='map',
                 ),
             ),
             Node(
-                node_id="node4",
+                node_id='node4',
                 sequence_id=6,
                 released=True,
                 node_position=NodePosition(
@@ -284,11 +284,11 @@ def get_order_w_unreleased_new(order_id=str(uuid4()), order_update_id=0):
                     theta=-2.6,
                     allowed_deviation_x_y=0.0,
                     allowed_deviation_theta=0.0,
-                    map_id="map",
+                    map_id='map',
                 ),
             ),
             Node(
-                node_id="node1",
+                node_id='node1',
                 sequence_id=8,
                 released=False,
                 node_position=NodePosition(
@@ -297,47 +297,47 @@ def get_order_w_unreleased_new(order_id=str(uuid4()), order_update_id=0):
                     theta=-0.66,
                     allowed_deviation_x_y=0.0,
                     allowed_deviation_theta=0.0,
-                    map_id="map",
+                    map_id='map',
                 ),
             ),
         ],
         edges=[
             Edge(
-                edge_id="edge1",
+                edge_id='edge1',
                 sequence_id=1,
                 released=True,
-                start_node_id="node1",
-                end_node_id="node2",
+                start_node_id='node1',
+                end_node_id='node2',
                 max_speed=10.0,
                 max_height=10.0,
                 min_height=1.0,
             ),
             Edge(
-                edge_id="edge2",
+                edge_id='edge2',
                 sequence_id=3,
                 released=True,
-                start_node_id="node2",
-                end_node_id="node3",
+                start_node_id='node2',
+                end_node_id='node3',
                 max_speed=10.0,
                 max_height=10.0,
                 min_height=1.0,
             ),
             Edge(
-                edge_id="edge3",
+                edge_id='edge3',
                 sequence_id=5,
                 released=True,
-                start_node_id="node3",
-                end_node_id="node4",
+                start_node_id='node3',
+                end_node_id='node4',
                 max_speed=10.0,
                 max_height=10.0,
                 min_height=1.0,
             ),
             Edge(
-                edge_id="edge4",
+                edge_id='edge4',
                 sequence_id=7,
                 released=False,
-                start_node_id="node4",
-                end_node_id="node1",
+                start_node_id='node4',
+                end_node_id='node1',
                 max_speed=10.0,
                 max_height=10.0,
                 min_height=1.0,
@@ -348,43 +348,43 @@ def get_order_w_unreleased_new(order_id=str(uuid4()), order_update_id=0):
 
 def get_stitch_orders(order_id=str(uuid4())):
     action1 = Action(
-        action_type="foo",
+        action_type='foo',
         action_id=str(uuid4()),
-        action_description="Foo description",
-        blocking_type="NONE",
+        action_description='Foo description',
+        blocking_type='NONE',
         action_parameters=[
-            ActionParameter(key="foo", value="bar")
+            ActionParameter(key='foo', value='bar')
         ]
     )
     action2 = Action(
-        action_type="bar",
+        action_type='bar',
         action_id=str(uuid4()),
-        action_description="Bar description",
-        blocking_type="NONE",
+        action_description='Bar description',
+        blocking_type='NONE',
         action_parameters=[
-            ActionParameter(key="foo", value="bar")
+            ActionParameter(key='foo', value='bar')
         ]
     )
     action3 = Action(
-        action_type="foobar",
+        action_type='foobar',
         action_id=str(uuid4()),
-        action_description="FooBar description",
-        blocking_type="NONE",
+        action_description='FooBar description',
+        blocking_type='NONE',
         action_parameters=[
-            ActionParameter(key="abc", value="xyz")
+            ActionParameter(key='abc', value='xyz')
         ]
     )
     base_order = Order(
         header_id=0,
         timestamp=get_vda5050_ts(),
-        version="1.1.1",
-        manufacturer="MANUFACTURER",
-        serial_number="SERIAL_NUMBER",
+        version='1.1.1',
+        manufacturer='MANUFACTURER',
+        serial_number='SERIAL_NUMBER',
         order_id=order_id,
         order_update_id=0,
         nodes=[
             Node(
-                node_id="node1",
+                node_id='node1',
                 sequence_id=0,
                 released=True,
                 node_position=NodePosition(
@@ -393,14 +393,14 @@ def get_stitch_orders(order_id=str(uuid4())):
                     theta=-0.66,
                     allowed_deviation_x_y=0.0,
                     allowed_deviation_theta=0.0,
-                    map_id="map",
+                    map_id='map',
                 ),
                 actions=[
                     action1
                 ],
             ),
             Node(
-                node_id="node2",
+                node_id='node2',
                 sequence_id=2,
                 released=True,
                 node_position=NodePosition(
@@ -409,7 +409,7 @@ def get_stitch_orders(order_id=str(uuid4())):
                     theta=0.0,
                     allowed_deviation_x_y=0.0,
                     allowed_deviation_theta=0.0,
-                    map_id="map",
+                    map_id='map',
                 ),
                 actions=[
                     action2
@@ -418,11 +418,11 @@ def get_stitch_orders(order_id=str(uuid4())):
         ],
         edges=[
             Edge(
-                edge_id="edge1",
+                edge_id='edge1',
                 sequence_id=1,
                 released=True,
-                start_node_id="node1",
-                end_node_id="node2",
+                start_node_id='node1',
+                end_node_id='node2',
                 max_speed=10.0,
                 max_height=10.0,
                 min_height=1.0,
@@ -433,14 +433,14 @@ def get_stitch_orders(order_id=str(uuid4())):
     stitch_order = Order(
         header_id=0,
         timestamp=get_vda5050_ts(),
-        version="1.1.1",
-        manufacturer="MANUFACTURER",
-        serial_number="SERIAL_NUMBER",
+        version='1.1.1',
+        manufacturer='MANUFACTURER',
+        serial_number='SERIAL_NUMBER',
         order_id=order_id,
         order_update_id=1,
         nodes=[
             Node(
-                node_id="node2",
+                node_id='node2',
                 sequence_id=2,
                 released=True,
                 node_position=NodePosition(
@@ -449,14 +449,14 @@ def get_stitch_orders(order_id=str(uuid4())):
                     theta=0.0,
                     allowed_deviation_x_y=0.0,
                     allowed_deviation_theta=0.0,
-                    map_id="map",
+                    map_id='map',
                 ),
                 actions=[
                     action2
                 ],
             ),
             Node(
-                node_id="node3",
+                node_id='node3',
                 sequence_id=4,
                 released=True,
                 node_position=NodePosition(
@@ -465,7 +465,7 @@ def get_stitch_orders(order_id=str(uuid4())):
                     theta=0.0,
                     allowed_deviation_x_y=0.0,
                     allowed_deviation_theta=0.0,
-                    map_id="map",
+                    map_id='map',
                 ),
                 actions=[
                     action3
@@ -474,11 +474,11 @@ def get_stitch_orders(order_id=str(uuid4())):
         ],
         edges=[
             Edge(
-                edge_id="edge2",
+                edge_id='edge2',
                 sequence_id=3,
                 released=True,
-                start_node_id="node2",
-                end_node_id="node3",
+                start_node_id='node2',
+                end_node_id='node3',
                 max_speed=10.0,
                 max_height=10.0,
                 min_height=1.0,
@@ -503,11 +503,11 @@ def test_vda5050_controller_node_new_order(
 
     # add a spy to validate used navigation goal parameters
     spy_send_adapter_navigate_to_node = mocker.spy(
-        node, "send_adapter_navigate_to_node"
+        node, 'send_adapter_navigate_to_node'
     )
 
     # add a spy to validate accept order is called correctly
-    spy_accept_order = mocker.spy(node, "_accept_order")
+    spy_accept_order = mocker.spy(node, '_accept_order')
 
     # generate an order and let the node process it
     order_id = str(uuid4())
@@ -530,7 +530,7 @@ def test_vda5050_controller_node_new_order(
     assert len(node._current_state.node_states) == 4
     assert len(node._current_state.edge_states) == 4
 
-    assert node._current_state.last_node_id == "node1"
+    assert node._current_state.last_node_id == 'node1'
     assert node._current_state.last_node_sequence_id == 0
 
     # Assert the first navigation goal was sent to the adapter,
@@ -556,7 +556,7 @@ def test_vda5050_controller_node_new_order(
 
     assert len(node._current_state.node_states) == 3
     assert len(node._current_state.edge_states) == 3
-    assert node._current_state.last_node_id == "node2"
+    assert node._current_state.last_node_id == 'node2'
     assert node._current_state.last_node_sequence_id == 2
 
     spy_send_adapter_navigate_to_node.reset_mock()
@@ -570,7 +570,7 @@ def test_vda5050_controller_node_new_order(
 
     assert len(node._current_state.node_states) == 2
     assert len(node._current_state.edge_states) == 2
-    assert node._current_state.last_node_id == "node3"
+    assert node._current_state.last_node_id == 'node3'
     assert node._current_state.last_node_sequence_id == 4
 
     spy_send_adapter_navigate_to_node.reset_mock()
@@ -583,7 +583,7 @@ def test_vda5050_controller_node_new_order(
     )
     assert len(node._current_state.node_states) == 1
     assert len(node._current_state.edge_states) == 1
-    assert node._current_state.last_node_id == "node4"
+    assert node._current_state.last_node_id == 'node4'
     assert node._current_state.last_node_sequence_id == 6
 
     spy_send_adapter_navigate_to_node.reset_mock()
@@ -593,7 +593,7 @@ def test_vda5050_controller_node_new_order(
 
     assert len(node._current_state.node_states) == 0
     assert len(node._current_state.edge_states) == 0
-    assert node._current_state.last_node_id == "node1"
+    assert node._current_state.last_node_id == 'node1'
     assert node._current_state.last_node_sequence_id == 8
 
 
@@ -610,11 +610,11 @@ def test_vda5050_controller_node_update_order(
 
     # add a spy to validate used navigation goal parameters
     spy_send_adapter_navigate_to_node = mocker.spy(
-        node, "send_adapter_navigate_to_node"
+        node, 'send_adapter_navigate_to_node'
     )
 
     # add a spy to validate accept order is called correctly
-    spy_accept_order = mocker.spy(node, "_accept_order")
+    spy_accept_order = mocker.spy(node, '_accept_order')
 
     # Send first new order
     order_id = str(uuid4())
@@ -660,7 +660,7 @@ def test_vda5050_controller_node_update_order(
     assert len(node._current_state.node_states) == 1
     assert len(node._current_state.edge_states) == 1
 
-    assert node._current_state.last_node_id == "node1"
+    assert node._current_state.last_node_id == 'node1'
     assert node._current_state.last_node_sequence_id == 8
 
     # Assert the first navigation goal was sent to the adapter,
@@ -679,7 +679,7 @@ def test_vda5050_controller_node_update_order(
     node._navigate_to_node_result_callback(future)
     assert len(node._current_state.node_states) == 0
     assert len(node._current_state.edge_states) == 0
-    assert node._current_state.last_node_id == "node2"
+    assert node._current_state.last_node_id == 'node2'
     assert node._current_state.last_node_sequence_id == 10
 
 
@@ -695,7 +695,7 @@ def test_vda5050_controller_node_stitch_order(
     node.logger.set_level(LoggingSeverity.DEBUG)
 
     # add a spy to validate accept order is called correctly
-    spy_accept_order = mocker.spy(node, "_accept_order")
+    spy_accept_order = mocker.spy(node, '_accept_order')
 
     # Get the base order and the stitch order, both with two nodes
     # and one edge each. The resulting (stitched) order should contain
@@ -736,11 +736,11 @@ def test_vda5050_controller_node_stitch_order(
 
     # Stitch node (node2, seq=2) was already visited — dedup drops it
     assert len(node._current_state.node_states) == 1
-    assert node._current_state.node_states[0].node_id == "node3"
+    assert node._current_state.node_states[0].node_id == 'node3'
     assert len(node._current_state.edge_states) == 1
     assert len(node._current_state.action_states) == 3
 
-    assert node._current_state.last_node_id == "node2"
+    assert node._current_state.last_node_id == 'node2'
     assert node._current_state.last_node_sequence_id == 2
 
     node._navigate_to_node_result_callback(future)
@@ -748,7 +748,7 @@ def test_vda5050_controller_node_stitch_order(
     assert len(node._current_state.edge_states) == 0
     assert len(node._current_state.action_states) == 3
 
-    assert node._current_state.last_node_id == "node3"
+    assert node._current_state.last_node_id == 'node3'
     assert node._current_state.last_node_sequence_id == 4
 
 
@@ -764,7 +764,7 @@ def test_vda5050_controller_node_reject_order(
     node.logger.set_level(LoggingSeverity.DEBUG)
 
     # add a spy to validate that the order has been rejected
-    spy_reject_order = mocker.spy(node, "_reject_order")
+    spy_reject_order = mocker.spy(node, '_reject_order')
 
     # UPDATE test fail - lower order_update_id
 
@@ -793,24 +793,24 @@ def test_vda5050_controller_node_reject_order(
     spy_reject_order.assert_called_once_with(
         order=order,
         error=OrderRejectErrors.ORDER_UPDATE_ERROR,
-        description="New update id 0 lower than old update id 1",
+        description='New update id 0 lower than old update id 1',
     )
 
 
 def get_instant_actions(*action_types):
-    """Build an InstantActions message with one action per given action_type."""
+    '''Build an InstantActions message with one action per given action_type.'''
     return InstantActions(
         header_id=0,
         timestamp=get_vda5050_ts(),
-        version="1.1.1",
-        manufacturer="MANUFACTURER",
-        serial_number="SERIAL_NUMBER",
+        version='1.1.1',
+        manufacturer='MANUFACTURER',
+        serial_number='SERIAL_NUMBER',
         actions=[
             Action(
                 action_type=action_type,
                 action_id=str(uuid4()),
                 action_description=action_type,
-                blocking_type="NONE",
+                blocking_type='NONE',
             )
             for action_type in action_types
         ],
@@ -832,7 +832,7 @@ def test_instant_action_does_not_block_active_order_check(
     assert not node._has_current_order()
 
     # The instant action is now WAITING/INITIALIZING — _has_current_order must still be False
-    instant_actions = get_instant_actions("startPause")
+    instant_actions = get_instant_actions('startPause')
     node.process_instant_actions(instant_actions)
     assert not node._has_current_order()
 
@@ -856,7 +856,7 @@ def test_instant_action_ids_tracked_on_process_instant_actions(
 ):
     node = VDA5050Controller()
 
-    instant_actions = get_instant_actions("startPause", "stopPause")
+    instant_actions = get_instant_actions('startPause', 'stopPause')
     node.process_instant_actions(instant_actions)
 
     for action in instant_actions.actions:
@@ -885,7 +885,7 @@ def test_order_action_still_blocks_active_order_check(
     assert node._has_current_order()
 
     # Layering an instant action on top must not change the result
-    instant_actions = get_instant_actions("startPause")
+    instant_actions = get_instant_actions('startPause')
     node.process_instant_actions(instant_actions)
     assert node._has_current_order()
 
@@ -898,23 +898,23 @@ def test_vda5050_controller_node_new_order_nav_through_nodes(
     service_get_state,
     service_supported_actions,
 ):
-    """Tests the original node list with the nav through nodes functionality."""
+    '''Tests the original node list with the nav through nodes functionality.'''
     nav_through_nodes_param = Parameter(
-        "enable_nav_through_nodes", type_=Parameter.Type.BOOL, value=True)
+        'enable_nav_through_nodes', type_=Parameter.Type.BOOL, value=True)
     node = VDA5050Controller(parameter_overrides=[nav_through_nodes_param])
     node.logger.set_level(LoggingSeverity.DEBUG)
 
     # add a spy to validate used navigation goal parameters
     spy_send_adapter_navigate_through_nodes = mocker.spy(
-        node, "send_adapter_navigate_through_nodes"
+        node, 'send_adapter_navigate_through_nodes'
     )
 
     spy_process_last_edge_node = mocker.spy(
-        node, "_process_last_edge_node"
+        node, '_process_last_edge_node'
     )
 
     # add a spy to validate accept order is called correctly
-    spy_accept_order = mocker.spy(node, "_accept_order")
+    spy_accept_order = mocker.spy(node, '_accept_order')
 
     # generate an order and let the node process it
     order_id = str(uuid4())
@@ -937,7 +937,7 @@ def test_vda5050_controller_node_new_order_nav_through_nodes(
     assert len(node._current_state.node_states) == 4
     assert len(node._current_state.edge_states) == 4
 
-    assert node._current_state.last_node_id == "node1"
+    assert node._current_state.last_node_id == 'node1'
     assert node._current_state.last_node_sequence_id == 0
 
     # Assert the navigation through nodes goal was sent to the adapter,
@@ -959,7 +959,7 @@ def test_vda5050_controller_node_new_order_nav_through_nodes(
 
     assert len(node._current_state.node_states) == 4
     assert len(node._current_state.edge_states) == 4
-    assert node._current_state.last_node_id == "node1"
+    assert node._current_state.last_node_id == 'node1'
     assert node._current_state.last_node_sequence_id == 0
 
     # Next node has been reached and a feedback message is published
@@ -971,7 +971,7 @@ def test_vda5050_controller_node_new_order_nav_through_nodes(
 
     assert len(node._current_state.node_states) == 3
     assert len(node._current_state.edge_states) == 3
-    assert node._current_state.last_node_id == "node2"
+    assert node._current_state.last_node_id == 'node2'
     assert node._current_state.last_node_sequence_id == 2
 
     # Next node has been reached and a feedback message is published
@@ -983,7 +983,7 @@ def test_vda5050_controller_node_new_order_nav_through_nodes(
 
     assert len(node._current_state.node_states) == 2
     assert len(node._current_state.edge_states) == 2
-    assert node._current_state.last_node_id == "node3"
+    assert node._current_state.last_node_id == 'node3'
     assert node._current_state.last_node_sequence_id == 4
 
     # Next node has been reached and a feedback message is published
@@ -995,7 +995,7 @@ def test_vda5050_controller_node_new_order_nav_through_nodes(
 
     assert len(node._current_state.node_states) == 1
     assert len(node._current_state.edge_states) == 1
-    assert node._current_state.last_node_id == "node4"
+    assert node._current_state.last_node_id == 'node4'
     assert node._current_state.last_node_sequence_id == 6
 
     # Last node reached as indicated by the result coming through
@@ -1010,7 +1010,7 @@ def test_vda5050_controller_node_new_order_nav_through_nodes(
     spy_process_last_edge_node.reset_mock()
     assert len(node._current_state.node_states) == 0
     assert len(node._current_state.edge_states) == 0
-    assert node._current_state.last_node_id == "node1"
+    assert node._current_state.last_node_id == 'node1'
     assert node._current_state.last_node_sequence_id == 8
 
 
@@ -1023,23 +1023,23 @@ def test_vda5050_controller_node_new_order_nav_through_nodes_unreleased_nodes(
     service_get_state,
     service_supported_actions,
 ):
-    """Tests with some unreleased nodes on the horizon and navigate through nodes."""
+    '''Tests with some unreleased nodes on the horizon and navigate through nodes.'''
     nav_through_nodes_param = Parameter(
-        "enable_nav_through_nodes", type_=Parameter.Type.BOOL, value=True)
+        'enable_nav_through_nodes', type_=Parameter.Type.BOOL, value=True)
     node = VDA5050Controller(parameter_overrides=[nav_through_nodes_param])
     node.logger.set_level(LoggingSeverity.DEBUG)
 
     # add a spy to validate used navigation goal parameters
     spy_send_adapter_navigate_through_nodes = mocker.spy(
-        node, "send_adapter_navigate_through_nodes"
+        node, 'send_adapter_navigate_through_nodes'
     )
 
     spy_process_last_edge_node = mocker.spy(
-        node, "_process_last_edge_node"
+        node, '_process_last_edge_node'
     )
 
     # add a spy to validate accept order is called correctly
-    spy_accept_order = mocker.spy(node, "_accept_order")
+    spy_accept_order = mocker.spy(node, '_accept_order')
 
     # generate an order and let the node process it
     order_id = str(uuid4())
@@ -1062,7 +1062,7 @@ def test_vda5050_controller_node_new_order_nav_through_nodes_unreleased_nodes(
     assert len(node._current_state.node_states) == 4
     assert len(node._current_state.edge_states) == 4
 
-    assert node._current_state.last_node_id == "node1"
+    assert node._current_state.last_node_id == 'node1'
     assert node._current_state.last_node_sequence_id == 0
 
     # Assert the first navigation goal was sent to the adapter,
@@ -1084,7 +1084,7 @@ def test_vda5050_controller_node_new_order_nav_through_nodes_unreleased_nodes(
 
     assert len(node._current_state.node_states) == 4
     assert len(node._current_state.edge_states) == 4
-    assert node._current_state.last_node_id == "node1"
+    assert node._current_state.last_node_id == 'node1'
     assert node._current_state.last_node_sequence_id == 0
 
     # Next node has been reached and a feedback message is published
@@ -1096,7 +1096,7 @@ def test_vda5050_controller_node_new_order_nav_through_nodes_unreleased_nodes(
 
     assert len(node._current_state.node_states) == 3
     assert len(node._current_state.edge_states) == 3
-    assert node._current_state.last_node_id == "node2"
+    assert node._current_state.last_node_id == 'node2'
     assert node._current_state.last_node_sequence_id == 2
 
     # Next node has been reached and a feedback message is published
@@ -1108,7 +1108,7 @@ def test_vda5050_controller_node_new_order_nav_through_nodes_unreleased_nodes(
 
     assert len(node._current_state.node_states) == 2
     assert len(node._current_state.edge_states) == 2
-    assert node._current_state.last_node_id == "node3"
+    assert node._current_state.last_node_id == 'node3'
     assert node._current_state.last_node_sequence_id == 4
 
     # Last node reached as indicated by the result coming through
@@ -1123,7 +1123,7 @@ def test_vda5050_controller_node_new_order_nav_through_nodes_unreleased_nodes(
     spy_process_last_edge_node.reset_mock()
     assert len(node._current_state.node_states) == 1
     assert len(node._current_state.edge_states) == 1
-    assert node._current_state.last_node_id == "node4"
+    assert node._current_state.last_node_id == 'node4'
     assert node._current_state.last_node_sequence_id == 6
 
     # This is the final node with a released horizon.
@@ -1140,22 +1140,22 @@ def test_vda5050_controller_stitch_while_navigating(
     service_get_state,
     service_supported_actions,
 ):
-    """Test that a stitch order arriving mid-navigation extends the in-flight goal
-    via ExtendNavigation instead of sending a new nav goal (which would be rejected)."""
+    '''Test that a stitch order arriving mid-navigation extends the in-flight goal
+    via ExtendNavigation instead of sending a new nav goal (which would be rejected).'''
     nav_through_nodes_param = Parameter(
-        "enable_nav_through_nodes", type_=Parameter.Type.BOOL, value=True)
+        'enable_nav_through_nodes', type_=Parameter.Type.BOOL, value=True)
     node = VDA5050Controller(parameter_overrides=[nav_through_nodes_param])
     node.logger.set_level(LoggingSeverity.DEBUG)
 
     spy_send_adapter_navigate_through_nodes = mocker.spy(
-        node, "send_adapter_navigate_through_nodes"
+        node, 'send_adapter_navigate_through_nodes'
     )
-    spy_accept_order = mocker.spy(node, "_accept_order")
-    spy_extend_nav = mocker.spy(node, "_extend_navigation_response_callback")
+    spy_accept_order = mocker.spy(node, '_accept_order')
+    spy_extend_nav = mocker.spy(node, '_extend_navigation_response_callback')
 
     # Mock the extend_nav service client so we don't rely on DDS discovery
     from vda5050_connector.srv import ExtendNavigation
-    mock_extend_response = ExtendNavigation.Response(success=True, message="ok")
+    mock_extend_response = ExtendNavigation.Response(success=True, message='ok')
     mock_extend_future = Future()
     mock_extend_future.set_result(mock_extend_response)
     node._extend_nav_svc_cli = mocker.MagicMock()
@@ -1167,30 +1167,30 @@ def test_vda5050_controller_stitch_while_navigating(
     base_order = Order(
         header_id=0,
         timestamp=get_vda5050_ts(),
-        version="1.1.1",
-        manufacturer="MANUFACTURER",
-        serial_number="SERIAL_NUMBER",
+        version='1.1.1',
+        manufacturer='MANUFACTURER',
+        serial_number='SERIAL_NUMBER',
         order_id=order_id,
         order_update_id=0,
         nodes=[
-            Node(node_id="A", sequence_id=0, released=True,
-                 node_position=NodePosition(x=0.0, y=0.0, theta=0.0, map_id="map")),
-            Node(node_id="B", sequence_id=2, released=True,
-                 node_position=NodePosition(x=1.0, y=0.0, theta=0.0, map_id="map")),
-            Node(node_id="C", sequence_id=4, released=True,
-                 node_position=NodePosition(x=2.0, y=0.0, theta=0.0, map_id="map")),
+            Node(node_id='A', sequence_id=0, released=True,
+                 node_position=NodePosition(x=0.0, y=0.0, theta=0.0, map_id='map')),
+            Node(node_id='B', sequence_id=2, released=True,
+                 node_position=NodePosition(x=1.0, y=0.0, theta=0.0, map_id='map')),
+            Node(node_id='C', sequence_id=4, released=True,
+                 node_position=NodePosition(x=2.0, y=0.0, theta=0.0, map_id='map')),
             # Horizon (unreleased)
-            Node(node_id="D", sequence_id=6, released=False,
-                 node_position=NodePosition(x=3.0, y=0.0, theta=0.0, map_id="map")),
+            Node(node_id='D', sequence_id=6, released=False,
+                 node_position=NodePosition(x=3.0, y=0.0, theta=0.0, map_id='map')),
         ],
         edges=[
-            Edge(edge_id="e1", sequence_id=1, released=True,
-                 start_node_id="A", end_node_id="B"),
-            Edge(edge_id="e2", sequence_id=3, released=True,
-                 start_node_id="B", end_node_id="C"),
+            Edge(edge_id='e1', sequence_id=1, released=True,
+                 start_node_id='A', end_node_id='B'),
+            Edge(edge_id='e2', sequence_id=3, released=True,
+                 start_node_id='B', end_node_id='C'),
             # Horizon (unreleased)
-            Edge(edge_id="e3", sequence_id=5, released=False,
-                 start_node_id="C", end_node_id="D"),
+            Edge(edge_id='e3', sequence_id=5, released=False,
+                 start_node_id='C', end_node_id='D'),
         ],
     )
 
@@ -1206,7 +1206,7 @@ def test_vda5050_controller_stitch_while_navigating(
     )
     assert node._nav_through_nodes_last_seq == 4  # seq of node C
 
-    assert node._current_state.last_node_id == "A"
+    assert node._current_state.last_node_id == 'A'
     assert node._current_state.last_node_sequence_id == 0
     assert len(node._current_state.node_states) == 3  # B, C, D (horizon)
     assert len(node._current_state.edge_states) == 3
@@ -1216,7 +1216,7 @@ def test_vda5050_controller_stitch_while_navigating(
     feedback_msg.feedback.last_node = base_order.nodes[1]  # B
     node._navigate_through_nodes_feedback_callback(feedback_msg)
 
-    assert node._current_state.last_node_id == "B"
+    assert node._current_state.last_node_id == 'B'
     assert node._current_state.last_node_sequence_id == 2
     assert len(node._current_state.node_states) == 2  # C, D
 
@@ -1228,25 +1228,25 @@ def test_vda5050_controller_stitch_while_navigating(
     stitch_order = Order(
         header_id=0,
         timestamp=get_vda5050_ts(),
-        version="1.1.1",
-        manufacturer="MANUFACTURER",
-        serial_number="SERIAL_NUMBER",
+        version='1.1.1',
+        manufacturer='MANUFACTURER',
+        serial_number='SERIAL_NUMBER',
         order_id=order_id,
         order_update_id=1,
         nodes=[
             # Stitch node (must match last released node of old base)
-            Node(node_id="C", sequence_id=4, released=True,
-                 node_position=NodePosition(x=2.0, y=0.0, theta=0.0, map_id="map")),
-            Node(node_id="D", sequence_id=6, released=True,
-                 node_position=NodePosition(x=3.0, y=0.0, theta=0.0, map_id="map")),
-            Node(node_id="E", sequence_id=8, released=True,
-                 node_position=NodePosition(x=4.0, y=0.0, theta=0.0, map_id="map")),
+            Node(node_id='C', sequence_id=4, released=True,
+                 node_position=NodePosition(x=2.0, y=0.0, theta=0.0, map_id='map')),
+            Node(node_id='D', sequence_id=6, released=True,
+                 node_position=NodePosition(x=3.0, y=0.0, theta=0.0, map_id='map')),
+            Node(node_id='E', sequence_id=8, released=True,
+                 node_position=NodePosition(x=4.0, y=0.0, theta=0.0, map_id='map')),
         ],
         edges=[
-            Edge(edge_id="e3", sequence_id=5, released=True,
-                 start_node_id="C", end_node_id="D"),
-            Edge(edge_id="e4", sequence_id=7, released=True,
-                 start_node_id="D", end_node_id="E"),
+            Edge(edge_id='e3', sequence_id=5, released=True,
+                 start_node_id='C', end_node_id='D'),
+            Edge(edge_id='e4', sequence_id=7, released=True,
+                 start_node_id='D', end_node_id='E'),
         ],
     )
 
@@ -1261,9 +1261,9 @@ def test_vda5050_controller_stitch_while_navigating(
     req = node._extend_nav_svc_cli.call_async.call_args[0][0]
     # nodes[0] is the stitch reference node (C), plus 2 new nodes (D, E)
     assert len(req.nodes) == 3
-    assert req.nodes[0].node_id == "C"
-    assert req.nodes[1].node_id == "D"
-    assert req.nodes[2].node_id == "E"
+    assert req.nodes[0].node_id == 'C'
+    assert req.nodes[1].node_id == 'D'
+    assert req.nodes[2].node_id == 'E'
     assert len(req.edges) == 2
 
     # The response callback should have been called (future was pre-resolved)
@@ -1271,14 +1271,14 @@ def test_vda5050_controller_stitch_while_navigating(
 
     # _nav_through_nodes_last_seq should now cover up to E
     assert node._nav_through_nodes_last_seq == 8
-    assert node._current_state.last_node_id == "B"
+    assert node._current_state.last_node_id == 'B'
     assert node._current_state.last_node_sequence_id == 2
 
     # --- Robot reaches node C (feedback) ---
     feedback_msg.feedback.last_node = base_order.nodes[2]  # C
     node._navigate_through_nodes_feedback_callback(feedback_msg)
 
-    assert node._current_state.last_node_id == "C"
+    assert node._current_state.last_node_id == 'C'
     assert node._current_state.last_node_sequence_id == 4
 
     # --- Navigation result arrives (goal finishes at the original last_seq=4,
@@ -1292,7 +1292,7 @@ def test_vda5050_controller_stitch_while_navigating(
     node._navigate_through_nodes_result_callback(future)
 
     # All nodes up to E (seq 8) should now be consumed
-    assert node._current_state.last_node_id == "E"
+    assert node._current_state.last_node_id == 'E'
     assert node._current_state.last_node_sequence_id == 8
     assert len(node._current_state.node_states) == 0
     assert len(node._current_state.edge_states) == 0
@@ -1306,47 +1306,47 @@ def test_vda5050_controller_skipped_feedback_nodes(
     service_get_state,
     service_supported_actions,
 ):
-    """Test that when intermediate node feedback is missed (C, D), the result
-    callback still processes each skipped node individually (C, D, E)."""
+    '''Test that when intermediate node feedback is missed (C, D), the result
+    callback still processes each skipped node individually (C, D, E).'''
     nav_through_nodes_param = Parameter(
-        "enable_nav_through_nodes", type_=Parameter.Type.BOOL, value=True)
+        'enable_nav_through_nodes', type_=Parameter.Type.BOOL, value=True)
     node = VDA5050Controller(parameter_overrides=[nav_through_nodes_param])
     node.logger.set_level(LoggingSeverity.DEBUG)
 
-    spy_process_last_edge_node = mocker.spy(node, "_process_last_edge_node")
-    spy_process_node = mocker.spy(node, "_process_node")
+    spy_process_last_edge_node = mocker.spy(node, '_process_last_edge_node')
+    spy_process_node = mocker.spy(node, '_process_node')
 
     # --- Order: A(0) → B(2) → C(4) → D(6) → E(8) ---
     order_id = str(uuid4())
     order = Order(
         header_id=0,
         timestamp=get_vda5050_ts(),
-        version="1.1.1",
-        manufacturer="MANUFACTURER",
-        serial_number="SERIAL_NUMBER",
+        version='1.1.1',
+        manufacturer='MANUFACTURER',
+        serial_number='SERIAL_NUMBER',
         order_id=order_id,
         order_update_id=0,
         nodes=[
-            Node(node_id="A", sequence_id=0, released=True,
-                 node_position=NodePosition(x=0.0, y=0.0, theta=0.0, map_id="map")),
-            Node(node_id="B", sequence_id=2, released=True,
-                 node_position=NodePosition(x=1.0, y=0.0, theta=0.0, map_id="map")),
-            Node(node_id="C", sequence_id=4, released=True,
-                 node_position=NodePosition(x=2.0, y=0.0, theta=0.0, map_id="map")),
-            Node(node_id="D", sequence_id=6, released=True,
-                 node_position=NodePosition(x=3.0, y=0.0, theta=0.0, map_id="map")),
-            Node(node_id="E", sequence_id=8, released=True,
-                 node_position=NodePosition(x=4.0, y=0.0, theta=0.0, map_id="map")),
+            Node(node_id='A', sequence_id=0, released=True,
+                 node_position=NodePosition(x=0.0, y=0.0, theta=0.0, map_id='map')),
+            Node(node_id='B', sequence_id=2, released=True,
+                 node_position=NodePosition(x=1.0, y=0.0, theta=0.0, map_id='map')),
+            Node(node_id='C', sequence_id=4, released=True,
+                 node_position=NodePosition(x=2.0, y=0.0, theta=0.0, map_id='map')),
+            Node(node_id='D', sequence_id=6, released=True,
+                 node_position=NodePosition(x=3.0, y=0.0, theta=0.0, map_id='map')),
+            Node(node_id='E', sequence_id=8, released=True,
+                 node_position=NodePosition(x=4.0, y=0.0, theta=0.0, map_id='map')),
         ],
         edges=[
-            Edge(edge_id="e1", sequence_id=1, released=True,
-                 start_node_id="A", end_node_id="B"),
-            Edge(edge_id="e2", sequence_id=3, released=True,
-                 start_node_id="B", end_node_id="C"),
-            Edge(edge_id="e3", sequence_id=5, released=True,
-                 start_node_id="C", end_node_id="D"),
-            Edge(edge_id="e4", sequence_id=7, released=True,
-                 start_node_id="D", end_node_id="E"),
+            Edge(edge_id='e1', sequence_id=1, released=True,
+                 start_node_id='A', end_node_id='B'),
+            Edge(edge_id='e2', sequence_id=3, released=True,
+                 start_node_id='B', end_node_id='C'),
+            Edge(edge_id='e3', sequence_id=5, released=True,
+                 start_node_id='C', end_node_id='D'),
+            Edge(edge_id='e4', sequence_id=7, released=True,
+                 start_node_id='D', end_node_id='E'),
         ],
     )
 
@@ -1355,7 +1355,7 @@ def test_vda5050_controller_skipped_feedback_nodes(
     rclpy.spin_once(node)
     rclpy.spin_once(adapter_node)
 
-    assert node._current_state.last_node_id == "A"
+    assert node._current_state.last_node_id == 'A'
     assert node._current_state.last_node_sequence_id == 0
     assert node._nav_through_nodes_last_seq == 8
     assert len(node._current_state.node_states) == 4  # B, C, D, E
@@ -1366,7 +1366,7 @@ def test_vda5050_controller_skipped_feedback_nodes(
     feedback_msg.feedback.last_node = order.nodes[1]  # B
     node._navigate_through_nodes_feedback_callback(feedback_msg)
 
-    assert node._current_state.last_node_id == "B"
+    assert node._current_state.last_node_id == 'B'
     assert node._current_state.last_node_sequence_id == 2
     assert len(node._current_state.node_states) == 3  # C, D, E
     assert len(node._current_state.edge_states) == 3
@@ -1378,7 +1378,7 @@ def test_vda5050_controller_skipped_feedback_nodes(
     spy_process_node.reset_mock()
 
     # Spy on _publish_state to verify each node triggers a separate state message
-    spy_publish_state = mocker.spy(node, "_publish_state")
+    spy_publish_state = mocker.spy(node, '_publish_state')
 
     # --- Result: navigation goal completes (robot arrived at E) ---
     future = Future()
@@ -1395,17 +1395,17 @@ def test_vda5050_controller_skipped_feedback_nodes(
     assert spy_publish_state.call_count == 3
 
     # Verify _process_node was called in order: C, D, E
-    process_node_calls = [call.kwargs.get("node") or call.args[0]
+    process_node_calls = [call.kwargs.get('node') or call.args[0]
                           for call in spy_process_node.call_args_list]
-    assert process_node_calls[0].node_id == "C"
+    assert process_node_calls[0].node_id == 'C'
     assert process_node_calls[0].sequence_id == 4
-    assert process_node_calls[1].node_id == "D"
+    assert process_node_calls[1].node_id == 'D'
     assert process_node_calls[1].sequence_id == 6
-    assert process_node_calls[2].node_id == "E"
+    assert process_node_calls[2].node_id == 'E'
     assert process_node_calls[2].sequence_id == 8
 
     # Final state: all nodes consumed, robot at E
-    assert node._current_state.last_node_id == "E"
+    assert node._current_state.last_node_id == 'E'
     assert node._current_state.last_node_sequence_id == 8
     assert len(node._current_state.node_states) == 0
     assert len(node._current_state.edge_states) == 0
@@ -1419,8 +1419,8 @@ def test_stitch_preserves_action_statuses(
     service_get_state,
     service_supported_actions,
 ):
-    """Verify that a stitch preserves existing action statuses (FINISHED/RUNNING)
-    instead of resetting them to WAITING, and only appends truly new actions."""
+    '''Verify that a stitch preserves existing action statuses (FINISHED/RUNNING)
+    instead of resetting them to WAITING, and only appends truly new actions.'''
     node = VDA5050Controller()
     node.logger.set_level(LoggingSeverity.DEBUG)
 
@@ -1473,60 +1473,60 @@ def test_stitch_no_actions_on_stitch_node(
     service_get_state,
     service_supported_actions,
 ):
-    """Regression test: stitching when the stitch node has zero actions must not
-    wipe existing action_states (guards against the [:-0] == [:0] == [] bug)."""
+    '''Regression test: stitching when the stitch node has zero actions must not
+    wipe existing action_states (guards against the [:-0] == [:0] == [] bug).'''
     node = VDA5050Controller()
     node.logger.set_level(LoggingSeverity.DEBUG)
 
     order_id = str(uuid4())
 
     edge_action = Action(
-        action_type="honk", action_id="edge_act_1",
-        action_description="Honk on edge", blocking_type="NONE",
+        action_type='honk', action_id='edge_act_1',
+        action_description='Honk on edge', blocking_type='NONE',
     )
     node_c_action = Action(
-        action_type="dock", action_id="node_c_act_1",
-        action_description="Dock at C", blocking_type="NONE",
+        action_type='dock', action_id='node_c_act_1',
+        action_description='Dock at C', blocking_type='NONE',
     )
 
     # Base order: A(0) --[e1 w/ edge_action]--> B(2) --[e2 unreleased]--> C(4 unreleased)
     # The horizon keeps has_current_order() True after reaching B.
     base_order = Order(
-        header_id=0, timestamp=get_vda5050_ts(), version="1.1.1",
-        manufacturer="MANUFACTURER", serial_number="SERIAL_NUMBER",
+        header_id=0, timestamp=get_vda5050_ts(), version='1.1.1',
+        manufacturer='MANUFACTURER', serial_number='SERIAL_NUMBER',
         order_id=order_id, order_update_id=0,
         nodes=[
-            Node(node_id="A", sequence_id=0, released=True,
-                 node_position=NodePosition(x=0.0, y=0.0, theta=0.0, map_id="map")),
-            Node(node_id="B", sequence_id=2, released=True,
-                 node_position=NodePosition(x=1.0, y=0.0, theta=0.0, map_id="map")),
-            Node(node_id="C", sequence_id=4, released=False,
-                 node_position=NodePosition(x=2.0, y=0.0, theta=0.0, map_id="map")),
+            Node(node_id='A', sequence_id=0, released=True,
+                 node_position=NodePosition(x=0.0, y=0.0, theta=0.0, map_id='map')),
+            Node(node_id='B', sequence_id=2, released=True,
+                 node_position=NodePosition(x=1.0, y=0.0, theta=0.0, map_id='map')),
+            Node(node_id='C', sequence_id=4, released=False,
+                 node_position=NodePosition(x=2.0, y=0.0, theta=0.0, map_id='map')),
         ],
         edges=[
-            Edge(edge_id="e1", sequence_id=1, released=True,
-                 start_node_id="A", end_node_id="B",
+            Edge(edge_id='e1', sequence_id=1, released=True,
+                 start_node_id='A', end_node_id='B',
                  actions=[edge_action]),
-            Edge(edge_id="e2", sequence_id=3, released=False,
-                 start_node_id="B", end_node_id="C"),
+            Edge(edge_id='e2', sequence_id=3, released=False,
+                 start_node_id='B', end_node_id='C'),
         ],
     )
 
     # Stitch order: B(2, no actions) --> C(4, node_c_action)
     stitch_order = Order(
-        header_id=0, timestamp=get_vda5050_ts(), version="1.1.1",
-        manufacturer="MANUFACTURER", serial_number="SERIAL_NUMBER",
+        header_id=0, timestamp=get_vda5050_ts(), version='1.1.1',
+        manufacturer='MANUFACTURER', serial_number='SERIAL_NUMBER',
         order_id=order_id, order_update_id=1,
         nodes=[
-            Node(node_id="B", sequence_id=2, released=True,
-                 node_position=NodePosition(x=1.0, y=0.0, theta=0.0, map_id="map")),
-            Node(node_id="C", sequence_id=4, released=True,
-                 node_position=NodePosition(x=2.0, y=0.0, theta=0.0, map_id="map"),
+            Node(node_id='B', sequence_id=2, released=True,
+                 node_position=NodePosition(x=1.0, y=0.0, theta=0.0, map_id='map')),
+            Node(node_id='C', sequence_id=4, released=True,
+                 node_position=NodePosition(x=2.0, y=0.0, theta=0.0, map_id='map'),
                  actions=[node_c_action]),
         ],
         edges=[
-            Edge(edge_id="e2", sequence_id=3, released=True,
-                 start_node_id="B", end_node_id="C"),
+            Edge(edge_id='e2', sequence_id=3, released=True,
+                 start_node_id='B', end_node_id='C'),
         ],
     )
 

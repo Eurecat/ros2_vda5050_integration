@@ -32,7 +32,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import rclpy
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.mqtt_bridge import MQTTBridge
+from .vda5050_connector.vda5050_connector_py.mqtt_bridge import MQTTBridge
 
 
 def main(args=None):

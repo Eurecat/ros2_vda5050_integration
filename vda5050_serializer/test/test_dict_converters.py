@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import pytest
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_serializer.vda5050_serializer import dromedary, snakey, transform_keys_in_dict
+from .vda5050_serializer.vda5050_serializer import dromedary, snakey, transform_keys_in_dict
 
 
 def test_to_snake():

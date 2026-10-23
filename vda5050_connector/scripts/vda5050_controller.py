@@ -35,7 +35,7 @@
 import rclpy
 from rclpy.executors import MultiThreadedExecutor
 
-from docker.eut_rmf_docker.src.rmf.ros2_vda5050_integration.vda5050_connector.vda5050_connector_py.vda5050_controller import VDA5050Controller
+from .vda5050_connector.vda5050_connector_py.vda5050_controller import VDA5050Controller
 
 
 def main(args=None):
