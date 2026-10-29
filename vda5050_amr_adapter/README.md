@@ -1,6 +1,6 @@
 # VDA5050 AMR Adapter
 
-ROS2 package with a Python implementation of the adapter for a [Turtlebot 3](https://github.com/ROBOTIS-GIT/turtlebot3/tree/galactic-devel). It contains the following directories:
+ROS2 package with a Python implementation of the adapter. It contains the following directories:
 
 - **config**: provides single-robot and multi-robot YAML files for configuring the MQTT bridge, controller and adapter parameters.
 - **launch**: provides launch files for running the `amr_adapter` node alone, the whole connector for one robot, or multiple connectors from one robot configuration file.
