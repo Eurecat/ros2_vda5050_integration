@@ -276,12 +276,10 @@ class AMRAdapter(Node):
             )
 
         elif action.action_type == "cancelOrder":
+            self._cancel_requested = True
 
-            self._send_cancel_goal_async = self._nav_to_pose_amr_action_client._cancel_goal_async()
-
-            self._send_cancel_goal_async.add_done_callback(
-                self._cancel_response_callback
-            )
+            if self._nav_to_pose_goal_handle is not None:
+                self._nav_to_pose_goal_handle.cancel_goal_async()
 
         else:
             self.logger.info(
@@ -392,17 +390,6 @@ class AMRAdapter(Node):
 
         self.get_logger().info("Goal accepted :)")
         goal_handle.get_result_async().add_done_callback(
-            self._nav_to_pose_amr_get_result_callback
-        )
-
-    def _cancel_response_callback(self, future):
-        cancel_handle = future.result()
-        if not cancel_handle.accepted:
-            self.get_logger().info("Cancel request rejected :(")
-            return
-
-        self.get_logger().info("Cancel request accepted :)")
-        cancel_handle.get_result_async().add_done_callback(
             self._nav_to_pose_amr_get_result_callback
         )
 

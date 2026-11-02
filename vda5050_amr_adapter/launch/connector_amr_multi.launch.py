@@ -33,7 +33,6 @@ import os
 import shutil
 import tempfile
 
-import yaml
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
@@ -41,6 +40,7 @@ from launch.actions import OpaqueFunction, RegisterEventHandler
 from launch.event_handlers import OnShutdown
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
+import yaml
 
 
 def _launch_robots(context, package_dir):

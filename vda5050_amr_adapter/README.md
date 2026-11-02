@@ -5,6 +5,19 @@ ROS2 package with a Python implementation of the adapter. It contains the follow
 - **config**: provides single-robot and multi-robot YAML files for configuring the MQTT bridge, controller and adapter parameters.
 - **launch**: provides launch files for running the `amr_adapter` node alone, the whole connector for one robot, or multiple connectors from one robot configuration file.
 
+## Running the tests
+
+The unit tests in [test/](./test) cover the `AMRAdapter` node with the ROS node plumbing mocked out. They require `vda5050_msgs` and `vda5050_connector` to be built and sourced, plus `pytest` and `pytest-mock`.
+
+```sh
+# From the workspace root, build the message and connector packages
+colcon build --packages-select vda5050_msgs vda5050_connector && source install/setup.bash
+# Run the adapter tests
+cd <workspace>/src/.../vda5050_amr_adapter && python3 -m pytest
+```
+
+`test/conftest.py` provides small stand-ins for `nav2_msgs` and `tf_transformations` when they are not installed.
+
 ## Running the AMR adapter
 
 To test the AMR adapter sample, follow these steps:
