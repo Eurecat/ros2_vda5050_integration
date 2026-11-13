@@ -328,6 +328,27 @@ class AMRAdapter(Node):
         )
 
         self._active_node = node
+        goal_msg = self._build_nav_to_pose_goal(node)
+        result = NavigateToNode.Result()
+
+        self._nav_to_pose_amr_action_client.wait_for_server()
+
+        self.get_logger().info("Async goal for robot {} sent.".format(self._robot_name))
+
+        self._cancel_requested = False
+        self._nav_to_pose_goal_handle = None
+        self._driving = True
+
+        try:
+            nav_status = await self._navigate_to_pose(goal_handle, goal_msg)
+        finally:
+            self._driving = False
+            self._nav_to_pose_goal_handle = None
+
+        self._set_goal_terminal_state(goal_handle, nav_status)
+        return result
+
+    def _build_nav_to_pose_goal(self, node):
         goal_point = PoseStamped()
 
         goal_point.header.stamp = self.get_clock().now().to_msg()
@@ -344,41 +365,35 @@ class AMRAdapter(Node):
 
         goal_msg = NavigateToPose.Goal()
         goal_msg.pose = goal_point
+        return goal_msg
 
-        self._nav_to_pose_amr_action_client.wait_for_server()
+    async def _navigate_to_pose(self, goal_handle, goal_msg):
+        """Send the Nav2 goal, wait for it to finish and return the final GoalStatus."""
+        self._nav_to_pose_goal_handle = await (
+            self._nav_to_pose_amr_action_client.send_goal_async(goal_msg)
+        )
 
-        self.get_logger().info("Async goal for robot {} sent.".format(self._robot_name))
+        if not self._nav_to_pose_goal_handle.accepted:
+            return GoalStatus.STATUS_ABORTED
 
-        self._cancel_requested = False
-        self._nav_to_pose_goal_handle = None
-        self._driving = True
-        result = NavigateToNode.Result()
+        # The cancel request may have arrived before Nav2 accepted the goal.
+        if self._cancel_requested or goal_handle.is_cancel_requested:
+            self._nav_to_pose_goal_handle.cancel_goal_async()
 
-        try:
-            send_future = self._nav_to_pose_amr_action_client.send_goal_async(goal_msg)
-            self._nav_to_pose_goal_handle = await send_future
+        nav_result = await self._nav_to_pose_goal_handle.get_result_async()
 
-            if not self._nav_to_pose_goal_handle.accepted:
-                goal_handle.abort()
-                return result
+        if goal_handle.is_cancel_requested:
+            return GoalStatus.STATUS_CANCELED
+        return nav_result.status
 
-            # The cancel request may have arrived before Nav2 accepted the goal.
-            if self._cancel_requested or goal_handle.is_cancel_requested:
-                self._nav_to_pose_goal_handle.cancel_goal_async()
-
-            nav_result = await self._nav_to_pose_goal_handle.get_result_async()
-
-            if goal_handle.is_cancel_requested or nav_result.status == GoalStatus.STATUS_CANCELED:
-                goal_handle.canceled()
-            elif nav_result.status == GoalStatus.STATUS_SUCCEEDED:
-                goal_handle.succeed()
-            else:
-                goal_handle.abort()
-
-            return result
-        finally:
-            self._driving = False
-            self._nav_to_pose_goal_handle = None
+    @staticmethod
+    def _set_goal_terminal_state(goal_handle, nav_status):
+        if nav_status == GoalStatus.STATUS_SUCCEEDED:
+            goal_handle.succeed()
+        elif nav_status == GoalStatus.STATUS_CANCELED:
+            goal_handle.canceled()
+        else:
+            goal_handle.abort()
 
     # Callbacks
 
