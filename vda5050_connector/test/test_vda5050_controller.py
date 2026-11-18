@@ -30,6 +30,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import rclpy
+from action_msgs.msg import GoalStatus
 from rclpy.logging import LoggingSeverity
 from rclpy.task import Future
 from rclpy.parameter import Parameter
@@ -50,6 +51,15 @@ from vda5050_msgs.msg import Action
 from vda5050_msgs.msg import ActionParameter
 from vda5050_msgs.msg import InstantActions
 from vda5050_msgs.msg import CurrentAction
+
+
+def get_succeeded_result_future(action_type):
+    future = Future()
+    response = action_type.Impl.GetResultService.Response()
+    response.status = GoalStatus.STATUS_SUCCEEDED
+    response.result = action_type.Result()
+    future.set_result(response)
+    return future
 
 
 def get_order_new(order_id=str(uuid4()), order_update_id=0):
@@ -542,8 +552,7 @@ def test_vda5050_controller_node_new_order(
     )
 
     # Future for invoking adapter navigation goal result callback
-    future = Future()
-    future.set_result(result=NavigateToNode.Result())
+    future = get_succeeded_result_future(NavigateToNode)
 
     spy_send_adapter_navigate_to_node.reset_mock()
     # Simulate the adapter reached navigation goal
@@ -625,8 +634,7 @@ def test_vda5050_controller_node_update_order(
     rclpy.spin_once(adapter_node)
 
     # Simulate the adapter reached navigation goals
-    future = Future()
-    future.set_result(result=NavigateToNode.Result())
+    future = get_succeeded_result_future(NavigateToNode)
 
     # The NEW order contains 5 nodes and 4 edges. The first node (in deviation range)
     # is processed and remove, and 4 nodes are send to navigate to.
@@ -672,8 +680,7 @@ def test_vda5050_controller_node_update_order(
     )
 
     # Future for invoking adapter navigation goal result callback
-    future = Future()
-    future.set_result(result=NavigateToNode.Result())
+    future = get_succeeded_result_future(NavigateToNode)
 
     # Simulate the adapter reached navigation goal
     node._navigate_to_node_result_callback(future)
@@ -710,10 +717,7 @@ def test_vda5050_controller_node_stitch_order(
     rclpy.spin_once(adapter_node)
 
     # Simulate the adapter reached navigation goals
-    future = Future()
-    result_response = NavigateToNode.Impl.GetResultService.Response()
-    result_response.status = 4  # GoalStatus.STATUS_SUCCEEDED
-    future.set_result(result=result_response)
+    future = get_succeeded_result_future(NavigateToNode)
 
     # The base order contains 2 nodes and 1 edge. The first node (in deviation range)
     # is processed and removed, and 1 node is sent to navigate to.
@@ -774,8 +778,7 @@ def test_vda5050_controller_node_reject_order(
     node.process_order(order)
 
     # Simulate the adapter reached navigation goals
-    future = Future()
-    future.set_result(result=NavigateToNode.Result())
+    future = get_succeeded_result_future(NavigateToNode)
 
     # The NEW order contains 5 nodes and 4 edges. The first node (in deviation range)
     # is processed and remove, and 4 nodes are send to navigate to.
@@ -1002,8 +1005,7 @@ def test_vda5050_controller_node_new_order_nav_through_nodes(
     # A feedback message shouldn't be published for the final node in a navigation order
 
     # Simulate the adapter reached navigation goals
-    future = Future()
-    future.set_result(result=NavigateThroughNodes.Result())
+    future = get_succeeded_result_future(NavigateThroughNodes)
     node._navigate_through_nodes_result_callback(future)
 
     spy_process_last_edge_node.assert_called_once()
@@ -1115,8 +1117,7 @@ def test_vda5050_controller_node_new_order_nav_through_nodes_unreleased_nodes(
     # A feedback message shouldn't be published for the final node in a navigation order
 
     # Simulate the adapter reached navigation goals
-    future = Future()
-    future.set_result(result=NavigateThroughNodes.Result())
+    future = get_succeeded_result_future(NavigateThroughNodes)
     node._navigate_through_nodes_result_callback(future)
 
     spy_process_last_edge_node.assert_called_once()
@@ -1287,7 +1288,8 @@ def test_vda5050_controller_stitch_while_navigating(
     # which is now 8 thanks to the extension.
     future = Future()
     result_response = NavigateThroughNodes.Impl.GetResultService.Response()
-    result_response.status = 4  # GoalStatus.STATUS_SUCCEEDED
+    result_response.status = GoalStatus.STATUS_SUCCEEDED
+    result_response.result = NavigateThroughNodes.Result()
     future.set_result(result=result_response)
     node._navigate_through_nodes_result_callback(future)
 
@@ -1383,7 +1385,8 @@ def test_vda5050_controller_skipped_feedback_nodes(
     # --- Result: navigation goal completes (robot arrived at E) ---
     future = Future()
     result_response = NavigateThroughNodes.Impl.GetResultService.Response()
-    result_response.status = 4  # GoalStatus.STATUS_SUCCEEDED
+    result_response.status = GoalStatus.STATUS_SUCCEEDED
+    result_response.result = NavigateThroughNodes.Result()
     future.set_result(result=result_response)
     node._navigate_through_nodes_result_callback(future)
 
